@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lazyjira — Zero-dependency CLI for Jira Cloud</title>
+<meta name="description" content="Like lazygit, but for Jira. Zero-dependency Python CLI that makes Jira bearable.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--text-muted:#8b949e;--accent:#58a6ff;--accent2:#7ee787;--accent3:#d2a8ff;--code-bg:#1c2128}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:960px;margin:0 auto;padding:0 24px}
+
+/* Hero */
+.hero{text-align:center;padding:80px 0 60px}
+.hero pre{color:var(--accent);font-size:14px;line-height:1.3;margin-bottom:24px;display:inline-block;text-align:left}
+.hero h2{font-size:20px;font-weight:400;color:var(--text-muted);margin-bottom:32px}
+.install-box{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:16px 24px;display:inline-flex;align-items:center;gap:12px;font-family:'SF Mono',SFMono-Regular,Consolas,monospace;font-size:16px;cursor:pointer;transition:border-color .2s}
+.install-box:hover{border-color:var(--accent)}
+.install-box .dollar{color:var(--text-muted)}
+.install-box .cmd{color:var(--accent2)}
+.install-box .copy{color:var(--text-muted);font-size:13px;margin-left:16px}
+.badges{margin-top:24px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badges img{height:20px}
+
+/* Features */
+.features{padding:60px 0;border-top:1px solid var(--border)}
+.features h2{text-align:center;font-size:28px;margin-bottom:40px}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.feature{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.feature h3{color:var(--accent);margin-bottom:8px;font-size:18px}
+.feature p{color:var(--text-muted);font-size:14px}
+
+/* Install */
+.install{padding:60px 0;border-top:1px solid var(--border)}
+.install h2{text-align:center;font-size:28px;margin-bottom:40px}
+.install-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.method{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:20px}
+.method h4{color:var(--accent2);margin-bottom:8px;font-size:14px;text-transform:uppercase;letter-spacing:1px}
+.method code{color:var(--text);font-size:14px;word-break:break-all}
+
+/* Commands */
+.commands{padding:60px 0;border-top:1px solid var(--border)}
+.commands h2{text-align:center;font-size:28px;margin-bottom:40px}
+.cmd-table{width:100%;border-collapse:collapse}
+.cmd-table th{text-align:left;color:var(--accent);padding:12px 16px;border-bottom:2px solid var(--border);font-size:14px}
+.cmd-table td{padding:10px 16px;border-bottom:1px solid var(--border);font-size:14px}
+.cmd-table td:first-child{font-family:'SF Mono',SFMono-Regular,Consolas,monospace;color:var(--accent2);white-space:nowrap}
+.cmd-table tr:hover{background:var(--card)}
+
+/* Comparison */
+.compare{padding:60px 0;border-top:1px solid var(--border)}
+.compare h2{text-align:center;font-size:28px;margin-bottom:40px}
+.compare table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.compare th,.compare td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:14px}
+.compare th{background:var(--code-bg);color:var(--accent);font-weight:600}
+.compare td:first-child{font-weight:600}
+
+/* Footer */
+footer{text-align:center;padding:40px 0;border-top:1px solid var(--border);color:var(--text-muted);font-size:14px}
+footer a{color:var(--accent)}
+
+@media(max-width:640px){
+  .hero{padding:40px 0 30px}
+  .hero pre{font-size:10px}
+  .install-box{font-size:14px;padding:12px 16px}
+  .feature-grid,.install-methods{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Hero -->
+<section class="hero">
+<pre>
+ _                     _  _
+| |  __ _  ____ _   _ (_)(_) _ __  __ _
+| | / _` ||_  /| | | || || || '__|/ _` |
+| || (_| | / / | |_| || || || |  | (_| |
+|_| \__,_|/___| \__, ||_||_||_|   \__,_|
+                 |___/
+</pre>
+<h2>Like lazygit, but for Jira. Zero-dependency CLI that makes Jira bearable.</h2>
+
+<div class="install-box" onclick="navigator.clipboard.writeText('pip install lazyjira');this.querySelector('.copy').textContent='Copied!'">
+  <span class="dollar">$</span>
+  <span class="cmd">pip install lazyjira</span>
+  <span class="copy">📋 Click to copy</span>
+</div>
+
+<div class="badges">
+  <a href="https://pypi.org/project/lazyjira/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lazyjira"></a>
+  <a href="https://pypi.org/project/lazyjira/"><img alt="Python" src="https://img.shields.io/pypi/pyversions/lazyjira"></a>
+  <a href="https://github.com/gotexis/lazyjira/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/gotexis/lazyjira"></a>
+  <a href="https://github.com/gotexis/lazyjira/actions"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/gotexis/lazyjira/ci.yml"></a>
+</div>
+</section>
+
+<!-- Features -->
+<section class="features">
+<h2>Why lazyjira?</h2>
+<div class="feature-grid">
+  <div class="feature">
+    <h3>⚡ Zero Dependencies</h3>
+    <p>Pure Python stdlib. No requests, no click, no rich. Install anywhere Python runs — no compiling, no cgo, no nonsense.</p>
+  </div>
+  <div class="feature">
+    <h3>📝 Markdown → ADF</h3>
+    <p>Write issue descriptions in Markdown. lazyjira auto-converts to Atlassian Document Format — tables, code blocks, lists, all of it.</p>
+  </div>
+  <div class="feature">
+    <h3>🔮 JPD Support</h3>
+    <p>First CLI with native Jira Product Discovery support. Auto-detects JPD projects and uses the right issue types.</p>
+  </div>
+  <div class="feature">
+    <h3>🔧 Flexible Config</h3>
+    <p>Environment variables, TOML config file, or token file — pick what works for you. Or mix them all.</p>
+  </div>
+  <div class="feature">
+    <h3>🚀 Raw JQL</h3>
+    <p>Need power? Drop straight to JQL queries. Full Jira Cloud REST API at your fingertips.</p>
+  </div>
+  <div class="feature">
+    <h3>🐍 Python 3.9+</h3>
+    <p>Runs on Python 3.9 through 3.13. Works on macOS, Linux, and Windows. Tested across all versions in CI.</p>
+  </div>
+</div>
+</section>
+
+<!-- Install -->
+<section class="install">
+<h2>Installation</h2>
+<div class="install-methods">
+  <div class="method">
+    <h4>PyPI (recommended)</h4>
+    <code>pip install lazyjira</code>
+  </div>
+  <div class="method">
+    <h4>pipx (isolated)</h4>
+    <code>pipx install lazyjira</code>
+  </div>
+  <div class="method">
+    <h4>One-liner</h4>
+    <code>curl -fsSL https://raw.githubusercontent.com/gotexis/lazyjira/main/install.sh | bash</code>
+  </div>
+  <div class="method">
+    <h4>From source</h4>
+    <code>git clone https://github.com/gotexis/lazyjira && cd lazyjira && pip install .</code>
+  </div>
+</div>
+</section>
+
+<!-- Commands -->
+<section class="commands">
+<h2>Commands</h2>
+<table class="cmd-table">
+<tr><th>Command</th><th>Description</th></tr>
+<tr><td>lazyjira issues list -p PROJ</td><td>List issues in a project</td></tr>
+<tr><td>lazyjira issues create "Title" -p PROJ</td><td>Create a new issue</td></tr>
+<tr><td>lazyjira issues search "query" -p PROJ</td><td>Search issues via text</td></tr>
+<tr><td>lazyjira issues read PROJ-123</td><td>Read full issue details + comments</td></tr>
+<tr><td>lazyjira move PROJ-123 "Done"</td><td>Transition issue status</td></tr>
+<tr><td>lazyjira comments create PROJ-123 -b "text"</td><td>Add a comment</td></tr>
+<tr><td>lazyjira query 'project=X AND status=Y'</td><td>Run raw JQL queries</td></tr>
+<tr><td>lazyjira link PROJ-1 PROJ-2</td><td>Link two issues</td></tr>
+<tr><td>lazyjira projects</td><td>List all Jira projects</td></tr>
+</table>
+</section>
+
+<!-- Comparison -->
+<section class="compare">
+<h2>How it compares</h2>
+<table>
+<tr><th></th><th>lazyjira</th><th>jira-cli</th><th>go-jira</th></tr>
+<tr><td>Language</td><td>Python</td><td>Go</td><td>Go</td></tr>
+<tr><td>Dependencies</td><td><strong>0</strong></td><td>Multiple</td><td>Multiple</td></tr>
+<tr><td>Install</td><td>pip install</td><td>brew / go</td><td>go install</td></tr>
+<tr><td>Status</td><td>🟢 Active</td><td>🟢 Active</td><td>🔴 Abandoned</td></tr>
+<tr><td>Jira Cloud</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>JPD Support</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Markdown → ADF</td><td>✅</td><td>❌</td><td>❌</td></tr>
+</table>
+</section>
+
+</div>
+
+<footer>
+  <p>
+    <a href="https://github.com/gotexis/lazyjira">GitHub</a> ·
+    <a href="https://pypi.org/project/lazyjira/">PyPI</a> ·
+    MIT License
+  </p>
+</footer>
+
+</body>
+</html>
