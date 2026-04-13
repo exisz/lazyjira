@@ -35,8 +35,14 @@ Repository = "https://github.com/gotexis/lazyjira"
 Issues = "https://github.com/gotexis/lazyjira/issues"
 Changelog = "https://github.com/gotexis/lazyjira/blob/main/CHANGELOG.md"
 
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
 [project.scripts]
 lazyjira = "lazyjira.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/lazyjira"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
