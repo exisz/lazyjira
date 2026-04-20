@@ -1,0 +1,8 @@
+id: dna://tool/lazyjira
+type: tool
+title: lazyjira (lin CLI)
+description: Zero-dependency CLI for Jira Cloud REST API. The main command is `lin`.
+command: lin
+homepage: https://github.com/gotexis/lazyjira
+status: active
+managed_by: dna://agent/nebula
