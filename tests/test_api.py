@@ -47,6 +47,8 @@ class TestTransitionIssue:
     @patch("lazyjira.api.jira_api")
     def test_transition_success(self, mock_api):
         mock_api.side_effect = [
+            # GET current status (not at target yet)
+            {"fields": {"status": {"name": "To Do"}}},
             # GET transitions
             {"transitions": [{"id": "31", "to": {"name": "In Progress"}}]},
             # POST transition
